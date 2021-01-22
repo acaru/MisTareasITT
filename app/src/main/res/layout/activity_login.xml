@@ -46,6 +46,7 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cajaUser"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/usuario"
@@ -63,6 +64,7 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/cajaPass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/pass"
@@ -74,16 +76,17 @@
 
     </LinearLayout>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/botonLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:background="@drawable/boton"
+        android:color="@color/purple_200"
         android:text="@string/login"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        android:onClick="login"/>
 
     <TextView
         android:id="@+id/cuentaNueva"
@@ -91,6 +94,9 @@
         android:layout_below="@+id/botonLogin"
         android:layout_marginTop="16dp"
         android:text="@string/crea_una_cuenta"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:onClick="crearCuenta"/>
+
+
 
 </RelativeLayout>
