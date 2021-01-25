@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".LoginRegisterActivity">
 
     <ImageView
         android:layout_width="match_parent"
@@ -14,7 +14,7 @@
         android:src="@mipmap/fondo" />
 
     <TextView
-        android:id="@+id/titulo"
+        android:id="@+id/tituloRegistro"
         style="@style/etiquetas"
         android:layout_alignParentTop="true"
         android:layout_marginTop="30dp"
@@ -22,9 +22,9 @@
         android:textSize="40sp" />
 
     <TextView
-        android:id="@+id/subtitulo"
+        android:id="@+id/subtituloRegistro"
         style="@style/etiquetas"
-        android:layout_below="@+id/titulo"
+        android:layout_below="@+id/tituloRegistro"
         android:layout_marginTop="10dp"
         android:text="@string/itt"
         android:textSize="20sp" />
@@ -34,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_below="@id/subtitulo"
+        android:layout_below="@id/subtituloRegistro"
         android:background="@color/white"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="16dp"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/cajaUser"
+                android:id="@+id/cajaUsuarioRegistro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/usuario"
@@ -64,10 +64,10 @@
             android:layout_height="wrap_content">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/cajaPass"
+                android:id="@+id/cajaPassRegistro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/pass"
+                android:hint="@string/passRegistro"
                 android:inputType="textPassword"
                 android:textColor="@color/colorPrimary"
                 android:textColorHint="@color/colorAccent"
@@ -77,25 +77,26 @@
     </LinearLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/botonLogin"
+        android:id="@+id/botonRegistro"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearLayout"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:color="@color/purple_200"
-        android:text="@string/login"
-        android:textSize="20sp"
-        android:onClick="login"/>
-
-    <TextView
-        android:id="@+id/cuentaNueva"
-        style="@style/etiquetas"
-        android:layout_below="@+id/botonLogin"
-        android:layout_marginTop="16dp"
-        android:text="@string/crea_una_cuenta"
+        android:text="@string/crear_usuario"
         android:textSize="20sp"
         android:onClick="registroUsuario"/>
+
+    <TextView
+        android:id="@+id/volverLogin"
+        style="@style/etiquetas"
+        android:layout_below="@+id/botonRegistro"
+        android:layout_marginTop="16dp"
+        android:text="@string/vuelve_a_login"
+        android:textSize="20sp"
+        android:onClick="volverLogin"/>
+
 
 
 

@@ -20,9 +20,11 @@ import com.example.mistareasitt.db.ControladorDB;
 
 public class MainActivity extends AppCompatActivity {
 
-    ControladorDB controladorDB;
+    private ControladorDB controladorDB;
     private ArrayAdapter<String> miAdapter;
-    ListView listViewTareas;
+    private String idUsuario;
+    private Bundle datos;
+    private ListView listViewTareas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         controladorDB = new ControladorDB(this);
         listViewTareas = (ListView) findViewById(R.id.listaTareas);
+        datos = this.getIntent().getExtras();
+        idUsuario = datos.getString("idUsuario");
+
+        System.out.println("idUsuario: " + idUsuario);
         actualizarUI();
     }
 
@@ -45,14 +51,19 @@ public class MainActivity extends AppCompatActivity {
         final EditText cajaTexto = new EditText(this);
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle("Nueva tarea")
-                .setMessage("¿Qué quieres hacer a continuación?")
+                .setMessage("Describe tu tarea")
                 .setView(cajaTexto)
                 .setPositiveButton("Añadir", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String tarea = cajaTexto.getText().toString();
-                        controladorDB.addTarea(tarea);
-                        actualizarUI();
+                        if (!controladorDB.existeTarea(tarea, idUsuario)) {
+                            controladorDB.addTarea(tarea, idUsuario);
+                            actualizarUI();
+                        } else {
+                            Toast.makeText(getBaseContext(), "Tarea duplicada", Toast.LENGTH_LONG).show();
+                        }
+
                     }
                 })
                 .setNegativeButton("Cancelar",null)
@@ -63,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void actualizarUI(){
-        if(controladorDB.numeroRegistros()==0){
+        if(controladorDB.obtenerTareas(idUsuario) == null){
             listViewTareas.setAdapter(null);
         }else {
-            miAdapter = new ArrayAdapter<>(this, R.layout.item_tarea, R.id.task_title, controladorDB.obtenerTareas());
+            miAdapter = new ArrayAdapter<>(this, R.layout.item_tarea, R.id.task_title, controladorDB.obtenerTareas(idUsuario));
             listViewTareas.setAdapter(miAdapter);
         }
     }
@@ -75,7 +86,9 @@ public class MainActivity extends AppCompatActivity {
         View parent = (View) view.getParent();
         TextView tareaTextView = (TextView) parent.findViewById(R.id.task_title);
         String tarea = tareaTextView.getText().toString();
-        controladorDB.borrarTarea(tarea);
+        controladorDB.borrarTarea(tarea, idUsuario);
         actualizarUI();
     }
+
+
 }

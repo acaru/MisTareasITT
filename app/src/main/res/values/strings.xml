@@ -7,5 +7,9 @@
     <string name="pass">Contraseña</string>
     <string name="login">login</string>
     <string name="crea_una_cuenta">Crea una cuenta</string>
-    <string name="terminado">Terminado</string>
+    <string name="completado">Completado</string>
+    <string name="crear_usuario">Crear Usuario</string>
+    <string name="passRegistro" />
+    <string name="usuario_creado">Usuario creado</string>
+    <string name="vuelve_a_login">Vuelve a Login</string>
 </resources>
