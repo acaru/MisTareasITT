@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
+    //Método que actualiza la interfaz de usuario
     private void actualizarUI(){
         if(controladorDB.obtenerTareas(idUsuario) == null){
             listViewTareas.setAdapter(null);
@@ -94,41 +94,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /*public void actualizarTarea(View view) {
-        View parentButton = (View) view.getParent();
-        final TextView tareaTextView = parentButton.findViewById(R.id.task_title);
-        System.out.println("TareaTexTview: " + tareaTextView.getText().toString());
-        final EditText tareaEditada = new EditText(this);
-        tareaEditada.setText(tareaTextView.getText().toString());
-        System.out.println("TareaEditada: " + tareaEditada.getText().toString());
-
-        AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle("Editar tarea")
-                .setMessage("Describe tu nueva tarea")
-                .setView(tareaTextView)
-                .setPositiveButton("Editar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String nuevoNomTarea = tareaEditada.getText().toString();
-                        controladorDB.actualizarTarea(tareaTextView.getText().toString(),
-                               nuevoNomTarea, idUsuario);
-                        actualizarUI();
-                        Toast.makeText(getBaseContext(), "Tarea editada", Toast.LENGTH_LONG);
-                    }
-                })
-                .setNegativeButton("Cancelar", null)
-                .create();
-        dialog.show();
-    }*/
-
-
     public void actualizarTarea(View view) {
         View parentButton = (View) view.getParent();
+        //Creamos edittext para poder recoger el texto a editar
         final EditText tareaEdit = new EditText(this);
+        //Recogemos tarea antigua en formato String
         String tareaAntigua = ((TextView) parentButton.findViewById(R.id.task_title)).getText().toString();
-        System.out.println(tareaAntigua);
+        //System.out.println(tareaAntigua);
         tareaEdit.setText(tareaAntigua);
 
+        //Diálogo para la función de actualizar tarea
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle("Editar tarea")
                 .setMessage("Describe tu nueva tarea")
@@ -136,8 +111,10 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton("Editar", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        //Pasamos tarea antigua, la nueva y el id hacia el update del controladorDB
                         controladorDB.actualizarTarea(tareaAntigua, tareaEdit.getText().toString(), idUsuario);
                         actualizarUI();
+                        //Mensaje de éxito de edición
                         mostrarToast(getBaseContext(), "Tarea editada", 150);
                     }
                 })
@@ -146,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
         dialog.show();
     }
 
-
+    //Método que borra las tareas
     public void borrarTarea(View view){
         View parent = (View) view.getParent();
         TextView tareaTextView = (TextView) parent.findViewById(R.id.task_title);
@@ -154,33 +131,26 @@ public class MainActivity extends AppCompatActivity {
         controladorDB.borrarTarea(tarea, idUsuario);
         actualizarUI();
 
+        //toast para acabar tarea
         mostrarToast(getBaseContext(), "Tarea completada", 150);
-        //Toast acabar tarea
-        /*LayoutInflater inflater = getLayoutInflater();
-        View view2 = inflater.inflate(R.layout.toastPersonalizado, null);
-        Toast toastacabar = new Toast (this);
-        toastacabar.setDuration(Toast.LENGTH_LONG);
-        toastacabar.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM, 0, 0);
-        toastacabar.setView(view2);
-        toastacabar.show();*/
     }
 
-
+    //Método para volver a LoginActivity
     public void volverLogin(View view) {
         startActivity(new Intent(this, LoginActivity.class));
         finish();
     }
 
+    //Método para mostrar toast personalizado en cada función
     private void mostrarToast(Context context, String mensaje, int alturaDesdeBottom) {
         LayoutInflater inflater = getLayoutInflater();
         View view2 = inflater.inflate(R.layout.toast_personalizado, null);
         TextView texto = view2.findViewById(R.id.txtMensaje);
-        Toast toastacabar = new Toast (context);
+        Toast toastPersonalizado = new Toast (context);
         //toastPersonalizado.setDuration(Toast.LENGTH_LONG);
         texto.setText(mensaje);
-        toastacabar.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM, 0, alturaDesdeBottom);
-        toastacabar.setView(view2);
-        toastacabar.show();
-        System.out.println("pasa edit click");
+        toastPersonalizado.setGravity(Gravity.CENTER_HORIZONTAL|Gravity.BOTTOM, 0, alturaDesdeBottom);
+        toastPersonalizado.setView(view2);
+        toastPersonalizado.show();
     }
 }

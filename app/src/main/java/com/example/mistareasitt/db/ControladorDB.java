@@ -12,10 +12,12 @@ import com.google.android.material.textfield.TextInputEditText;
 
 public class ControladorDB extends SQLiteOpenHelper {
 
+    //Constructor de la BBDD
     public ControladorDB(@Nullable Context context) {
         super(context, "com.example.mistareasitt.db", null, 1);
     }
 
+    //Creación de tablas "usuarios" y "tareas" con su foreign key para relacionarlas
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE USUARIOS (" +
@@ -35,6 +37,7 @@ public class ControladorDB extends SQLiteOpenHelper {
 
     }
 
+    //Método para añadir usuarios pasando usuario y password
     public void addUser(String usuario, String pass) {
         ContentValues registro = new ContentValues();
         registro.put("NOMUSUARIO", usuario);
@@ -46,6 +49,7 @@ public class ControladorDB extends SQLiteOpenHelper {
         db.close();
     }
 
+    //Método comprobador de usuarios, revisa nombre de usuario en la tabla usuarios
     public boolean existeUsuario(String idUsuario) {
 
         SQLiteDatabase db = this.getReadableDatabase();
@@ -64,6 +68,7 @@ public class ControladorDB extends SQLiteOpenHelper {
         }
     }
 
+    //Método que realiza el login del usuario consultando nombre y pass de la tabla usuarios
     public String loginUsuario(String usuario, String pass) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -77,6 +82,7 @@ public class ControladorDB extends SQLiteOpenHelper {
         return cursor.getString(0);
     }
 
+    //Método para añadir tareas, se envía por parámetro la tarea y el id de usuario de la tabla "tareas"
     public void addTarea(String tarea, String idUsuario){
 
         ContentValues registro = new ContentValues();
@@ -90,6 +96,7 @@ public class ControladorDB extends SQLiteOpenHelper {
         db.close();
     }
 
+    //Método para obtener tareas del usuario logueado, se le pasa el id de usuario
     public String[] obtenerTareas(String idUsuario) {
         System.out.println("Pasa controlador obtenerTareas");
 
@@ -101,8 +108,8 @@ public class ControladorDB extends SQLiteOpenHelper {
         //db.execSQL("INSERT INTO TAREAS VALUES (null, ' + tarea + ');");
         int regs = cursor.getCount();
 
-        System.out.println("registros: " + regs);
-
+        //System.out.println("registros: " + regs);
+        //Si el contador de registros es 0 cierra la BBDD sino va rellenando las tareas del usuario
         if (regs == 0) {
             db.close();
             return null;
@@ -118,13 +125,14 @@ public class ControladorDB extends SQLiteOpenHelper {
         }
     }
 
+    /* Método útil para saber la cantidad de registros
     public int numeroRegistros(){
             SQLiteDatabase db = this.getReadableDatabase();
             Cursor cursor = db.rawQuery("SELECT * FROM TAREAS", null);
             return cursor.getCount();
     }
-
-
+    */
+    //Método para averiguar si existe una tarea de un usuario pasando tarea y id de usuario en la tabla "tareas"
     public boolean existeTarea (String tarea, String idUsuario) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -139,6 +147,7 @@ public class ControladorDB extends SQLiteOpenHelper {
         }
     }
 
+    //Método para actualizar Tareas en la BBDD, se le pasa tarea antigua, nueva y el id de usuario
     public void actualizarTarea (String tarea, String tareaNueva, String idUsuario){
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -153,6 +162,7 @@ public class ControladorDB extends SQLiteOpenHelper {
         db.close();
     }
 
+    //Método que borra tareas de un usuario pasando la tarea en cuestión y el id
     public void borrarTarea(String tarea, String idUsuario){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete("TAREAS", "NOMBRE=? AND IDUSUARIO=?", new String [] {tarea, idUsuario});

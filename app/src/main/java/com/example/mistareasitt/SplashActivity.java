@@ -15,13 +15,15 @@ public class SplashActivity extends AppCompatActivity implements Animation.Anima
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
+        //Escondemos la ActionBar
         getSupportActionBar().hide();
 
+        //Aplicamos fuente al texto del splash
         Typeface miFuente = Typeface.createFromAsset(getAssets(), "fuente.ttf");
         TextView titulo = (TextView) findViewById(R.id.titulo);
         titulo.setTypeface(miFuente);
 
+        //Animamos el texto
         Animation anim = AnimationUtils.loadAnimation(this,R.anim.animacion);
         titulo.startAnimation(anim);
         anim.setAnimationListener(this);
@@ -33,6 +35,7 @@ public class SplashActivity extends AppCompatActivity implements Animation.Anima
 
     }
 
+    //Cambiamos de intent cuándo finalice la animación
     @Override
     public void onAnimationEnd(Animation animation) {
         Intent intent = new Intent(this, LoginActivity.class);

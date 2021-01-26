@@ -22,28 +22,25 @@ public class LoginActivity extends AppCompatActivity {
         getSupportActionBar().hide();
     }
 
-    public void crearCuenta(View view){
-        Toast toast = Toast.makeText(this,"Cuenta Creada", Toast.LENGTH_LONG);
-        toast.show();
-    }
-
+    //Método que registra usuarios cambiando a la activity LoginRegisterActivity
     public void registroUsuario(View view){
         startActivity(new Intent(this, LoginRegisterActivity.class));
     }
 
+    //Método que que realiza el login recogiendo usuario y contraseña de las cajas de texto
     public void login(View view){
         controller = new ControladorDB(this);
         usuario = findViewById(R.id.cajaUser);
         pass = findViewById(R.id.cajaPass);
 
-
+        //Comprobador de si faltan usuario y pass, si no  faltan y averigua que no es null el texto
+        //Si es correcto te envía a la MainActivity enviando con putExtra la info del usuario
         if(usuario.getText().toString().isEmpty()){
             usuario.setError("Falta usuario");
         }else if (pass.getText().toString().isEmpty()){
             pass.setError("Falta contraseña");
         }else if (controller.loginUsuario(usuario.getText().toString(), pass.getText().toString()) != null){
             String idUsuario = controller.loginUsuario(usuario.getText().toString(), pass.getText().toString());
-            System.out.println("LoginActivity - IdUsuario: " + idUsuario);
             startActivity(new Intent(this, MainActivity.class)
                     .putExtra("idUsuario", idUsuario));
             finish();
@@ -51,8 +48,8 @@ public class LoginActivity extends AppCompatActivity {
             Toast toast =  Toast.makeText(this, "Usuario o contraseña incorrecta", Toast.LENGTH_LONG);
         }
 
-
-        /*if(usuario.getText().toString().equalsIgnoreCase("itt") && pass.getText().toString().equalsIgnoreCase("123")){
+        /*Esto sería en caso de solo tener unos pocos usuarios predefinidos en la app
+        if(usuario.getText().toString().equalsIgnoreCase("itt") && pass.getText().toString().equalsIgnoreCase("123")){
             Intent intent = new Intent(this,MainActivity.class);
             startActivity(intent);
         }else{
