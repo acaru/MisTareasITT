@@ -38,11 +38,14 @@ public class LoginRegisterActivity extends AppCompatActivity {
         //Comprobador de campos vacíos y si existe usuario. Si no existe
         if (usuario.getText().toString().isEmpty()){
             this.usuario.setError("Usuario vacío");
+            this.usuario.requestFocus();
         }else if (pass.getText().toString().isEmpty()){
             this.pass.setError("Password vacía");
+            this.pass.requestFocus();
         }else if (controller.existeUsuario(usuario.getText().toString())) {
             Toast toast = Toast.makeText(this, "El usuario existe", Toast.LENGTH_LONG);
             toast.show();
+            this.usuario.requestFocus();
         }else {
 
             //Añade usuario a la BBDD

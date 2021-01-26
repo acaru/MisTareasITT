@@ -19,11 +19,13 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="30dp"
         android:text="@string/mis_tareas"
+        android:fontFamily="@font/robotobold"
         android:textSize="40sp" />
 
     <TextView
         android:id="@+id/subtituloRegistro"
         style="@style/etiquetas"
+        android:fontFamily="@font/robotoregular"
         android:layout_below="@+id/tituloRegistro"
         android:layout_marginTop="10dp"
         android:text="@string/itt"
@@ -86,6 +88,7 @@
         android:color="@color/purple_200"
         android:text="@string/crear_usuario"
         android:textSize="20sp"
+        android:fontFamily="@font/robotobold"
         android:onClick="registroUsuario"/>
 
     <TextView
@@ -93,6 +96,7 @@
         style="@style/etiquetas"
         android:layout_below="@+id/botonRegistro"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/robotobold"
         android:text="@string/vuelve_a_login"
         android:textSize="20sp"
         android:onClick="volverLogin"/>

@@ -20,11 +20,13 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="30dp"
         android:text="@string/mis_tareas"
+        android:fontFamily="@font/robotobold"
         android:textSize="40sp" />
 
     <TextView
         android:id="@+id/subtitulo"
         style="@style/etiquetas"
+        android:fontFamily="@font/robotoregular"
         android:layout_below="@+id/titulo"
         android:layout_marginTop="10dp"
         android:text="@string/itt"
@@ -85,6 +87,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         android:color="@color/purple_200"
+        android:fontFamily="@font/robotobold"
         android:text="@string/login"
         android:textSize="20sp"
         android:onClick="login"/>
@@ -95,6 +98,7 @@
         android:layout_below="@+id/botonLogin"
         android:layout_marginTop="16dp"
         android:text="@string/crea_una_cuenta"
+        android:fontFamily="@font/robotobold"
         android:textSize="20sp"
         android:onClick="registroUsuario"/>
 

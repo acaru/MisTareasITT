@@ -33,12 +33,17 @@ public class LoginActivity extends AppCompatActivity {
         usuario = findViewById(R.id.cajaUser);
         pass = findViewById(R.id.cajaPass);
 
-        //Comprobador de si faltan usuario y pass, si no  faltan y averigua que no es null el texto
+        //Comprobador de si faltan usuario y pass, si no  faltan, si existe usuario
         //Si es correcto te envía a la MainActivity enviando con putExtra la info del usuario
         if(usuario.getText().toString().isEmpty()){
             usuario.setError("Falta usuario");
+            usuario.requestFocus();
         }else if (pass.getText().toString().isEmpty()){
             pass.setError("Falta contraseña");
+            pass.requestFocus();
+        }else if (!controller.existeUsuario(usuario.getText().toString())){
+            Toast.makeText(this,"No existe usuario",Toast.LENGTH_LONG).show();
+            usuario.requestFocus();
         }else if (controller.loginUsuario(usuario.getText().toString(), pass.getText().toString()) != null){
             String idUsuario = controller.loginUsuario(usuario.getText().toString(), pass.getText().toString());
             startActivity(new Intent(this, MainActivity.class)
@@ -46,6 +51,7 @@ public class LoginActivity extends AppCompatActivity {
             finish();
         }else{
             Toast toast =  Toast.makeText(this, "Usuario o contraseña incorrecta", Toast.LENGTH_LONG);
+            usuario.requestFocus();
         }
 
         /*Esto sería en caso de solo tener unos pocos usuarios predefinidos en la app
