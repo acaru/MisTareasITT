@@ -46,7 +46,7 @@ public class ControladorDB extends SQLiteOpenHelper {
         db.close();
     }
 
-    public boolean siExisteUsuario (String idUsuario) {
+    public boolean existeUsuario(String idUsuario) {
 
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -124,16 +124,11 @@ public class ControladorDB extends SQLiteOpenHelper {
             return cursor.getCount();
     }
 
-    public void borrarTarea(String tarea, String idUsuario){
-        SQLiteDatabase db = this.getWritableDatabase();
-        db.delete("TAREAS", "NOMBRE=? AND IDUSUARIO=?", new String [] {tarea, idUsuario});
-        db.close();
-    }
 
-    public boolean existeTarea (String task, String userId) {
+    public boolean existeTarea (String tarea, String idUsuario) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String[] args = new String[] {task, userId};
+        String[] args = new String[] {tarea, idUsuario};
 
         Cursor cursor = db.rawQuery("SELECT * FROM TAREAS " + "WHERE NOMBRE=? AND IDUSUARIO=?", args);
 
@@ -142,5 +137,25 @@ public class ControladorDB extends SQLiteOpenHelper {
         } else {
             return false;
         }
+    }
+
+    public void actualizarTarea (String tarea, String tareaNueva, String idUsuario){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues registro = new ContentValues();
+
+        registro.put("NOMBRE", tareaNueva);
+
+        db.update("TAREAS", registro,
+                "NOMBRE=? AND IDUSUARIO=?",
+                new String[]{tarea, idUsuario});
+
+        db.close();
+    }
+
+    public void borrarTarea(String tarea, String idUsuario){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete("TAREAS", "NOMBRE=? AND IDUSUARIO=?", new String [] {tarea, idUsuario});
+        db.close();
     }
 }

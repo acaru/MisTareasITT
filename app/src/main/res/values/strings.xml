@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Mis Tareas ITT</string>
-    <string name="mis_tareas">Mis Tareas</string>
+    <string name="mis_tareas">MIS TAREAS</string>
     <string name="imagen_de_fondo">imagen de fondo</string>
-    <string name="itt">ITT</string>
+    <string name="itt">by acaru</string>
     <string name="usuario">Usuario</string>
     <string name="pass">Contraseña</string>
     <string name="login">login</string>
@@ -12,4 +12,7 @@
     <string name="passRegistro" />
     <string name="usuario_creado">Usuario creado</string>
     <string name="vuelve_a_login">Vuelve a Login</string>
+    <string name="volver_al_login">Volver al Login</string>
+    <string name="tarea_finalizada">Tarea Finalizada</string>
+    <string name="tarea_creada">Tarea creada</string>
 </resources>

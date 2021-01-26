@@ -9,21 +9,43 @@
 
     <TextView
         android:id="@+id/task_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="240dp"
+        android:layout_height="55dp"
+        android:layout_alignBaseline="@id/botonCompletado"
+        android:fontFamily="@font/robotoregular"
         android:text="TextView"
-        android:textSize="20sp"
-        android:layout_alignBaseline="@id/botonCompletado"/>
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="20sp" />
 
-
-    <Button
-        android:id="@+id/botonCompletado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/completado"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/botonEditar"
+        android:layout_width="61dp"
+        android:layout_height="68dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="63dp"
+        android:layout_marginRight="63dp"
+        android:backgroundTint="#03A9F4"
+        android:onClick="actualizarTarea"
+        app:cornerRadius="100dp"
+        app:icon="@drawable/edicion"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/botonCompletado"
+        android:layout_width="61dp"
+        android:layout_height="68dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginEnd="-1dp"
+
+        android:layout_marginRight="-1dp"
         android:onClick="borrarTarea"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:cornerRadius="60dp"
+        app:icon="@drawable/check"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </RelativeLayout>

@@ -34,7 +34,7 @@ public class LoginRegisterActivity extends AppCompatActivity {
             this.usuario.setError("Usuario vacío");
         }else if (pass.getText().toString().isEmpty()){
             this.pass.setError("Password vacía");
-        }else if (controller.siExisteUsuario(usuario.getText().toString())) {
+        }else if (controller.existeUsuario(usuario.getText().toString())) {
             System.out.println("PASA EXISTE USUARIO ");
             Toast toast = Toast.makeText(this, "El usuario existe", Toast.LENGTH_LONG);
             toast.show();
